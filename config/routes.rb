@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "lessons/index"
+  get "lessons/show"
+  get "lessons/new"
+  get "lessons/edit"
+  get "lessons/destroy"
   get "courses/index"
   get "courses/show"
   get "courses/new"
