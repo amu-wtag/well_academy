@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_16_051021) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_16_085423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_16_051021) do
     t.index ["question_id"], name: "index_options_on_question_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "course_id", null: false
+    t.decimal "course_price", precision: 10, scale: 2, null: false
+    t.integer "payment_type", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_payments_on_course_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.bigint "quiz_id", null: false
     t.text "content", null: false
@@ -156,6 +168,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_16_051021) do
   add_foreign_key "enrollments", "users", column: "student_id"
   add_foreign_key "lessons", "courses"
   add_foreign_key "options", "questions"
+  add_foreign_key "payments", "courses"
+  add_foreign_key "payments", "users"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quiz_participations", "quizzes"
   add_foreign_key "quiz_participations", "users", column: "student_id"
