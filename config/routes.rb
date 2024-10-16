@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "courses/index"
+  get "courses/show"
+  get "courses/new"
+  get "courses/edit"
+  get "courses/destroy"
   get "categories/index"
   get "categories/show"
   get "categories/new"
