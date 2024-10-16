@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "quizzes/index"
+  get "quizzes/show"
+  get "quizzes/new"
+  get "quizzes/edit"
+  get "quizzes/destroy"
   get "enrollments/index"
   get "enrollments/show"
   get "enrollments/new"
