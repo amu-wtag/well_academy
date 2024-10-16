@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "options/index"
+  get "options/show"
+  get "options/new"
+  get "options/edit"
+  get "options/destroy"
   get "questions/index"
   get "questions/show"
   get "questions/new"
