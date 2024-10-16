@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "reviews/index"
+  get "reviews/show"
+  get "reviews/new"
+  get "reviews/edit"
+  get "reviews/destroy"
   get "quiz_participations/index"
   get "quiz_participations/show"
   get "quiz_participations/new"
