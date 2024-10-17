@@ -5,7 +5,7 @@ class Course < ApplicationRecord
   has_one_attached :completion_certificate
   has_one_attached :achievement_certificate
 
-  enum level: { beginner: 0, intermediate: 1, advanced: 2 }
+  enum :level, { beginner: 0, intermediate: 1, advanced: 2 }
 
   validates :title, presence: true
   validates :level, inclusion: { in: levels.keys }
