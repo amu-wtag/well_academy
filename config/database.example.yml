@@ -1,14 +1,12 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  host: <%= ENV['DATABASE_HOST'] %>
+  host: localhost
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: <%= ENV['DATABASE_NAME'] %>
+  database: well_academy_development
 
 test:
   <<: *default
@@ -17,5 +15,3 @@ test:
 production:
   <<: *default
   database: well_academy_production
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
