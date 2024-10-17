@@ -13,8 +13,6 @@ development:
 test:
   <<: *default
   database: well_academy_test
-  username: <%= ENV['DB_USERNAME'] || 'admin' %>
-  password: <%= ENV['DB_PASSWORD'] || 'admin' %>
 
 production:
   <<: *default
