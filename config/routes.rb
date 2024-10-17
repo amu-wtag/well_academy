@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "payments/index"
+  get "payments/show"
+  get "payments/new"
+  get "payments/edit"
+  get "payments/destroy"
   root "home#index"
   get "home/index"
   get "reviews/index"
