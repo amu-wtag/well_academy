@@ -1,71 +1,21 @@
 Rails.application.routes.draw do
-  get "payments/index"
-  get "payments/show"
-  get "payments/new"
-  get "payments/edit"
-  get "payments/destroy"
   root "home#index"
   get "home/index"
-  get "reviews/index"
-  get "reviews/show"
-  get "reviews/new"
-  get "reviews/edit"
-  get "reviews/destroy"
-  get "quiz_participations/index"
-  get "quiz_participations/show"
-  get "quiz_participations/new"
-  get "quiz_participations/edit"
-  get "quiz_participations/destroy"
-  get "options/index"
-  get "options/show"
-  get "options/new"
-  get "options/edit"
-  get "options/destroy"
-  get "questions/index"
-  get "questions/show"
-  get "questions/new"
-  get "questions/edit"
-  get "questions/destroy"
-  get "quizzes/index"
-  get "quizzes/show"
-  get "quizzes/new"
-  get "quizzes/edit"
-  get "quizzes/destroy"
-  get "enrollments/index"
-  get "enrollments/show"
-  get "enrollments/new"
-  get "enrollments/edit"
-  get "enrollments/destroy"
-  get "lessons/index"
-  get "lessons/show"
-  get "lessons/new"
-  get "lessons/edit"
-  get "lessons/destroy"
-  get "courses/index"
-  get "courses/show"
-  get "courses/new"
-  get "courses/edit"
-  get "courses/destroy"
-  get "categories/index"
-  get "categories/show"
-  get "categories/new"
-  get "categories/edit"
-  get "categories/destroy"
-  get "users/index"
-  get "users/show"
-  get "users/new"
-  get "users/edit"
-  get "users/destroy"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :categories
+  resources :courses
+  resources :users
+  resources :lessons
+  resources :enrollments
+  resources :quizzes
+  resources :questions
+  resources :options
+  resources :quiz_participations
+  resources :reviews
+  resources :payments
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
