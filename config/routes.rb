@@ -13,7 +13,17 @@ Rails.application.routes.draw do
   resources :reviews
   resources :payments
 
+  get "users/login", to: "users#login"
+  post "users/create", to: "users#create"
 
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
+  get "sessions/login"
+  get "sessions/logout", to: "sessions#destroy"
+  get "sessions/attempt_logout"
+  post "sessions/attempt_login"
+  get "users/create", to: "users#create"
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
