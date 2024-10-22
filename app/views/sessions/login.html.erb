@@ -13,13 +13,13 @@
                 <!-- Email input -->
                 <div data-mdb-input-init class="form-outline mb-4">
                     <%= form.label :email, class:"form-label" %>
-                    <%= form.email_field :email, class: "form-control form-control-lg", placeholder: "Your email", required: true  %>
+                    <%= form.email_field :email, value: params[:email], class: "form-control form-control-lg", placeholder: "Your email", required: true  %>
                 </div>
 
                 <!-- Password input -->
                 <div data-mdb-input-init class="form-outline mb-3">
                     <%= form.label :password, class:"form-label" %>
-                    <%= form.password_field :password, class: "form-control form-control-lg", placeholder: "Your password", required: true%>
+                    <%= form.password_field :password, value: params[:password], class: "form-control form-control-lg", placeholder: "Your password", required: true%>
                 </div>
 
                 <div class="text-center text-lg-start mt-4 pt-2">
