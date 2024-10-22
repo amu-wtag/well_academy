@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <%# <a class="navbar-brand" href="#">Navbar</a> %>
+        <%= link_to "WellAcademy", root_path, class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </ul>
+            
+
+            <% if logged_in? == false %>
+                <ul class="d-flex" role="search">
+                    <%= link_to 'Login', sessions_login_path, class: "btn btn-outline-primary" %>&nbsp;&nbsp;
+                    <%= link_to 'Signup', new_user_path, class: "btn btn-outline-success" %>
+                </ul>
+            <% else %>
+                <ul class="d-flex me-5" role="search">
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="nav-item dropdown d-flex">
+                            <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <% if @user.profile_picture.attached? %>
+                                    <img src="<%= url_for(@user.profile_picture) %>" alt="" style="width: 50px; height: 50px; border-radius: 50%;" title="Profile picture">
+                                <% else %>
+                                    <i class="fa-solid fa-user-slash" style="border-radius: 50%;" title="No profile picture"></i>
+                                <% end %>
+                                <%# <%= @user.name  %>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <%= link_to 'Profile', user_path(@user.id), class: "dropdown-item" %> 
+                                </li>
+                                <li> <%= link_to "Edit Profile", edit_user_path(@user), class: "dropdown-item" %> </li>
+                                <li>
+                                    <%= link_to 'Logout', sessions_attempt_logout_path, class: "dropdown-item",onclick: "return confirm('Are you sure you want to logout?');", method: :delete%>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </ul>
+            <% end %>
+        </div>
+    </div>
+</nav>
