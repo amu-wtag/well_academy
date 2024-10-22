@@ -1,2 +1,93 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<section class="vh-200" style="background-color: #eee;">
+  <div class="container h-75">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-3">Edit Profile</p>
+                <p style="color: red;" class="text-center">* indicates required fields</p>
+                <%= form_with(model: @user, url: user_path(@user), class: "mx-1 mx-md-4", method: :patch) do |f| %>
+                    
+                    <p><i class="fas fa-user fa-lg fa-fw"></i> Name<span style="color: red;">*</span> &nbsp; &nbsp;</p>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                            <%= f.text_field :name, class: "form-control", placeholder: "Your name", required: true%>
+                        </div>
+                    </div>
+
+                    <p><i class="fas fa-envelope fa-lg fa-fw"></i> Email<span style="color: red;">*</span></p>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        
+                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                            <%= f.email_field :email, class: "form-control", placeholder: "Your email", required: true %>
+                        </div>
+                    </div>
+
+                    <p><i class="fa-solid fa-circle-user fa-lg fa-fw"></i> Role<span style="color: red;">*</span></p>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                            <%= f.select :role, User.roles.keys[0..-2].map { |role| [role.titleize, role] }, {}, class: "form-control", required: true %>
+                        </div>
+                    </div>
+
+                    <p><i class="fa-solid fa-phone fa-lg fa-fw"></i> Phone No</p>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                            <%= f.text_field :phone, class: "form-control", placeholder: "Your phone no" %>
+                        </div>
+                    </div>
+                    
+                    <p><i class="fa-solid fa-rectangle-list"></i> Bio</p>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        
+                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                            <%= f.text_field :bio, class: "form-control", placeholder: "Your bio" %>
+                        </div>
+                    </div>
+
+
+                    <p><i class="fa-solid fa-file-image fa-lg fa-fw"></i> Profile Picture</p>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                            <%= f.file_field :profile_picture, accept: "image/*", class: "form-control" %>
+                        </div>
+                    </div>
+
+                    <p><i class="fa-solid fa-file-pdf fa-lg fa-fw"></i> Certificates</p>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                            <%= f.file_field :certificates, multiple: true, accept: "application/pdf", class: "form-control" %>
+                        </div>
+                    </div>
+
+                    <p><i class="fas fa-lock fa-lg fa-fw"></i> New Password</p>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        
+                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                            <%= f.password_field :password, class: "form-control", placeholder: "New password" %>
+                        </div>
+                    </div>
+                    
+                    <p><i class="fas fa-key fa-lg fa-fw"></i> Repeat new password</p>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                            <%= f.password_field :password, class: "form-control", placeholder: "Repeat your new password" %>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <%= f.submit "Update", class: "btn btn-outline-success btn-lg", disable_with: 'Submiting...' %>
+                    </div>
+                <% end %>
+
+              </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
