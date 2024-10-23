@@ -9,12 +9,12 @@
 
                 <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-3">Edit Profile</p>
                 <p style="color: red;" class="text-center">* indicates required fields</p>
-                <%= form_with(model: @user, url: user_path(@user), class: "mx-1 mx-md-4", method: :patch) do |f| %>
+                <%= form_with(model: @tmp_user, url: user_path(@tmp_user), class: "mx-1 mx-md-4", method: :patch) do |f| %>
                     
                     <p><i class="fas fa-user fa-lg fa-fw"></i> Name<span style="color: red;">*</span> &nbsp; &nbsp;</p>
                     <div class="d-flex flex-row align-items-center mb-4">
                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                            <%= f.text_field :name, class: "form-control", placeholder: "Your name", required: true%>
+                            <%= f.text_field :name, class: "form-control", placeholder: "Your name", required: true, value: @tmp_user.name.titleize%>
                         </div>
                     </div>
 
@@ -29,7 +29,14 @@
                     <p><i class="fa-solid fa-circle-user fa-lg fa-fw"></i> Role<span style="color: red;">*</span></p>
                     <div class="d-flex flex-row align-items-center mb-4">
                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                            <%= f.select :role, User.roles.keys[0..-2].map { |role| [role.titleize, role] }, {}, class: "form-control", required: true %>
+                            
+                            <% if @user.admin? && !@tmp_user.admin? %>
+                                <%= f.select :role, User.roles.keys.map { |r| [r.humanize, r] }, { selected: @tmp_user.role }, { class: "form-control", required: true } %>
+                            <% else %>
+                                <%= f.text_field :role, class: "form-control", required: true, value: @tmp_user.role%>
+                            <% end %>
+                            
+                            
                         </div>
                     </div>
 
@@ -56,12 +63,13 @@
                         </div>
                     </div>
 
-                    <p><i class="fa-solid fa-file-pdf fa-lg fa-fw"></i> Certificates</p>
+                    <!-- <p><i class="fa-solid fa-file-pdf fa-lg fa-fw"></i> Certificates</p>
                     <div class="d-flex flex-row align-items-center mb-4">
                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                             <%= f.file_field :certificates, multiple: true, accept: "application/pdf", class: "form-control" %>
                         </div>
                     </div>
+                    -->
 
                     <p><i class="fas fa-lock fa-lg fa-fw"></i> New Password</p>
                     <div class="d-flex flex-row align-items-center mb-4">
