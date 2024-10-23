@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout "application"
   def new
   end
 
@@ -12,16 +13,18 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      session[:email] = user.email
       redirect_to root_path, notice: "Logged in successfully"
     else
       flash.now[:alert] = "Invalid email or password"
-      render :new
+      render :login, status: :unprocessable_entity
     end
   end
 
   def destroy
     params[:id] = nil
     session[:user_id] = nil
+    session[:email] = nil
     redirect_to root_path, notice: "Logged out successfully"
   end
 
