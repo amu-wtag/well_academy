@@ -5,14 +5,15 @@ gem "bootsnap", require: false
 gem "cancancan", "~> 3.3"
 gem "importmap-rails"
 gem "jbuilder"
+gem "ostruct"
 gem "pg", "~> 1.1"
+gem "pry"
 gem "puma", ">= 5.0"
 gem "rails", "~> 7.2.1"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
-gem "pry"
 
 group :development, :test do
   gem "brakeman", require: false
