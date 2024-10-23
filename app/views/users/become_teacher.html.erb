@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                <% if @user.teacher_certificates.attached? %>
+                <% if @user.grad_certificate.attached? %>
                     <p class="text-center h3 fw-bold mb-3 mt-1 text-success">You have already applied. Your request is in process. Thank you!</p>
                 <% else %>
                     <p class="text-center h1 fw-bold mb-3 mt-1">Upload your certificates</p>
@@ -17,14 +17,14 @@
                         <p><i class="fa-solid fa-file-pdf fa-lg fa-fw"></i>Graduation Certificate</p>
                         <div class="d-flex flex-row align-items-center mb-4">
                             <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                <%= f.file_field :teacher_certificates, multiple: true, accept: "application/pdf", class: "form-control", required: true %>
+                                <%= f.file_field :grad_certificate, accept: "application/pdf", class: "form-control", required: true %>
                             </div>
                         </div>
 
                         <p><i class="fa-solid fa-file-pdf fa-lg fa-fw"></i>Post Graduation Certificate</p>
                         <div class="d-flex flex-row align-items-center mb-4">
                             <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                <%= f.file_field :teacher_certificates, multiple: true, accept: "application/pdf", class: "form-control", required: true %>
+                                <%= f.file_field :postgrad_certificate, accept: "application/pdf", class: "form-control", required: true %>
                             </div>
                         </div>
                         
