@@ -3,7 +3,8 @@ class User < ApplicationRecord
 
   has_one_attached :profile_picture
   has_many_attached :student_certificates
-  has_many_attached :teacher_certificates
+  has_one_attached :grad_certificate
+  has_one_attached :postgrad_certificate
 
   enum role: %i[student teacher admin].freeze
 
