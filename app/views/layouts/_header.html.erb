@@ -43,6 +43,22 @@
                     <%= link_to 'Signup', new_user_path, class: "btn btn-outline-success" %>
                 </ul>
             <% else %>
+                <% if @user.student? %>
+                    <ul>
+                        <div class="d-grid gap-2 col-12 mx-auto">
+                            <%= link_to "Become a Teacher", become_teacher_user_path(@user), class: "btn btn-outline-dark" %>
+                        </div>
+                    </ul>
+                <% end %>
+
+                <% if @user.admin? %>
+                    <ul>
+                        <div class="d-grid gap-2 col-12 mx-auto">
+                            <%= link_to "Manage Users", users_path, class: "btn btn-outline-dark" %>
+                        </div>
+                    </ul>
+                <% end %>
+                
                 <ul class="d-flex me-5" role="search">
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="nav-item dropdown d-flex">
