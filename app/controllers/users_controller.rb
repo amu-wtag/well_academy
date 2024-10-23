@@ -29,11 +29,14 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @tmp_user = User.find(params[:id])
+    # puts "**debug** This is edit and tmp_user: #{@tmp_user.name}"
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
+    @tmp_user = User.find(params[:id])
+    # puts "**debug** This is update and tmp_user: #{@tmp_user.name}"
+    if @tmp_user.update(user_params)
       flash[:notice] = "User updated successfully."
       redirect_to user_path
     else
@@ -77,6 +80,6 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find_by(id: session[:user_id])
-    # @user = User.find(params[:id])
+    @tmp_user = @user
   end
 end
