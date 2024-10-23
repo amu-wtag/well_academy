@@ -22,5 +22,3 @@ function fadeOutFlashMessages() {
     }
 }
 fadeOutFlashMessages();
-// document.addEventListener("DOMContentLoaded", fadeOutFlashMessages);
-
