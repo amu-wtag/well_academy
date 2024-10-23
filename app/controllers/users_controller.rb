@@ -3,16 +3,14 @@ class UsersController < ApplicationController
 
   load_and_authorize_resource
 
+  before_action :set_user, only: %i[index show edit update destroy]
+
   def index
-    @users = User.all
+    # @users = User.all
+    @users = User.where.not(role: "admin")
   end
 
   def show
-    if session[:user_id]
-      @user = User.find(session[:user_id])
-    else
-      redirect_to root_path
-    end
   end
 
   def new
@@ -21,7 +19,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # Rails.logger.debug("User Params: #{user_params.inspect}")
     if @user.save
       # UserMailer.welcome_email(@user).deliver_now
       flash[:notice] = "User created successfully."
@@ -32,7 +29,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(session[:user_id])
   end
 
   def update
@@ -47,11 +43,9 @@ class UsersController < ApplicationController
   end
 
   def delete
-    @user = User.find(params[:id])
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "User destroyed successfully."
     redirect_to root_path
@@ -71,9 +65,18 @@ class UsersController < ApplicationController
   def login
   end
 
+  def become_teacher
+    @user = User.find(session[:user_id])
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :date_joined, :bio, :role, :profile_picture, certificates: [])
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :date_joined, :bio, :role, :profile_picture, student_certificates: [], teacher_certificates: [])
+  end
+
+  def set_user
+    @user = User.find_by(id: session[:user_id])
+    # @user = User.find(params[:id])
   end
 end
