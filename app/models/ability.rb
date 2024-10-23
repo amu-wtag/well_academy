@@ -6,26 +6,27 @@ class Ability
     user ||= User.new(role: "student")
     # These methods (admin?, user?) are typically defined in the User model, either manually or through an enum
     if user.admin?
-      # can :manage, :all
-      can :manage, Course
-      can :manage, User
+      can :manage, :all
     elsif user.teacher?
-      can :read, Course
+
       can :read, User
-      can :create, User
       can :create, User
       can :update, User, id: user.id
       can :destroy, User, id: user.id
-      can :create, Course
+      can :confirm, User
+
+      can :read, Course
       can :create, Course
       can :update, Course, id: course.id
       can :destroy, Course, id: course.id
-      can :confirm, User
+
     elsif user.student?
+      can :become_teacher, User
       can :read, Course
       can :read, User
       can :create, User
-      can :update, User, id: user.id
+      can :edit, User
+      can :update, User, id: user
       can :destroy, User, id: user.id
       can :confirm, User
     else
