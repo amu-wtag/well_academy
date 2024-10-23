@@ -25,7 +25,7 @@ class Ability
       can :read, User
       can :create, User
       can :edit, User
-      can :update, User, id: user
+      can :update, User, id: user.id
       can :destroy, User, id: user.id
       can :confirm, User
     else
