@@ -16,6 +16,15 @@ Rails.application.routes.draw do
   get "users/login", to: "users#login"
   post "users/create", to: "users#create"
 
+  get "users/login", to: "users#login"
+  post "users/create", to: "users#create"
+  # get "users/become_teacher", to: "users#become_teacher"
+
+  resources :users do
+    member do
+      get "become_teacher"
+    end
+  end
   get "sessions/new"
   get "sessions/create"
   get "sessions/destroy"
