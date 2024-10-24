@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root "home#index"
   get "home/index"
+
   resources :categories
   resources :courses
-  resources :users
   resources :lessons
   resources :enrollments
   resources :quizzes
@@ -13,26 +13,28 @@ Rails.application.routes.draw do
   resources :reviews
   resources :payments
 
-  get "users/login", to: "users#login"
-  post "users/create", to: "users#create"
-
-  get "users/login", to: "users#login"
-  post "users/create", to: "users#create"
-  # get "users/become_teacher", to: "users#become_teacher"
-
   resources :users do
+    collection do
+      get "login"
+      get "pending"
+    end
     member do
       get "become_teacher"
+      post "approve_teacher"
+      post "reject_teacher"
+      post "remove_profile_picture"
     end
   end
-  get "sessions/new"
-  get "sessions/create"
-  get "sessions/destroy"
-  get "sessions/login"
-  get "sessions/logout", to: "sessions#destroy"
-  get "sessions/attempt_logout"
-  post "sessions/attempt_login"
-  get "users/create", to: "users#create"
+
+  resources :sessions do
+    collection do
+      get "login"
+      get "logout"
+      post "attempt_login"
+      get "attempt_logout"
+    end
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
