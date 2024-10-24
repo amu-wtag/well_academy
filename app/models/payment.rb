@@ -2,8 +2,8 @@ class Payment < ApplicationRecord
   belongs_to :user
   belongs_to :course
 
-  enum payment_type: { bkash: 0, nagad: 1, rocket: 2, brac_bank: 3, ibbl: 4, city_bank: 5 }
-  enum status: { unpaid: 0, paid: 1 }
+  enum payment_type: %i[bkash nagad rocket brac_bank ibbl city_bank].freeze
+  enum status: %i[unpaid paid].freeze
 
   validates :course_price, presence: true
 end
