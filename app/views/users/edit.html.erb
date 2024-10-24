@@ -31,12 +31,17 @@
                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                             
                             <% if @user.admin? && !@tmp_user.admin? %>
-                                <%= f.select :role, User.roles.keys.map { |r| [r.humanize, r] }, { selected: @tmp_user.role }, { class: "form-control", required: true } %>
+                                <% if @tmp_user.grad_certificate.attached? %>
+                                    <%= f.select :role, User.roles.keys.map { |r| [r.humanize, r] }, { selected: @tmp_user.role }, { class: "form-control", required: true } %>
+                                <% else %>
+                                    <%= f.select :role, User.roles.keys.reject { |r| r == "teacher" }.map { |r| [r.humanize, r] }, { selected: @tmp_user.role }, { class: "form-control", required: true } %>
+
+                                <% end %>
+                
                             <% else %>
                                 <%= f.text_field :role, class: "form-control", required: true, value: @tmp_user.role%>
                             <% end %>
-                            
-                            
+                             
                         </div>
                     </div>
 
