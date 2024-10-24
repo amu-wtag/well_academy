@@ -13,11 +13,12 @@ class Ability
       can :update, User, id: user.id
       can :destroy, User, id: user.id
       can :confirm, User
+      can :remove_profile_picture, User
 
       can :read, Course
       can :create, Course
-      can :update, Course, id: course.id
-      can :destroy, Course, id: course.id
+      can :update, Course
+      can :destroy, Course
 
     elsif user.student?
       can :become_teacher, User
@@ -28,6 +29,7 @@ class Ability
       can :update, User, id: user.id
       can :destroy, User, id: user.id
       can :confirm, User
+      can :remove_profile_picture, User
     else
       can :read, :all
       can :create, User
