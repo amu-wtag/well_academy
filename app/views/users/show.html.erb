@@ -15,8 +15,15 @@
           <div class="card-body text-center">
             <% if @user.profile_picture.attached? %>
               <img src="<%= url_for(@user.profile_picture) %>" alt="" style="width: 300px; height: 300px;" title="Profile picture">
+              <%= button_to "Remove Picture", remove_profile_picture_user_path(@user), method: :post, class: "btn btn-outline-danger btn-sm mt-3", onclick: "return confirm('Are you sure?');" %>
             <% else %>
-                <i class="fa-solid fa-user-slash" title="No profile picture"></i>
+                <img src="<%= asset_path("no-image-available.jpg") %>" class="card-img-top" alt="" title="Profile picture">
+                <%= form_with(model: @user, url: user_path(@user), class: "mx-1 mx-md-4", method: :patch) do |f| %>
+                  <%= f.file_field :profile_picture, accept: "image/*", class: "form-control mb-2" %>
+                  <div class="d-grid gap-2">
+                    <%= f.submit "Upload", class: "btn btn-outline-success btn-sm", disable_with: 'Submiting...' %>
+                  </div>
+                <% end %>
             <% end %>
   
             <h5 class="my-3"><%= @user.name.split.map(&:capitalize).join(' ') %></h5>
