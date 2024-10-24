@@ -36,7 +36,9 @@
 **Reviews and Ratings**
 - Course Reviews: Allow students to rate and review courses after completion.
 
-Technologies:
-Frontend: HTML, CSS, Bootstrap
-Backend: Ruby on Rails
-Database: PostgreSQL
+## Technologies:
+- Frontend: HTML, CSS, Bootstrap
+- Backend: Ruby on Rails
+- Database: PostgreSQL
+
+## ER Diagram: [WellAcademy ER Diagram](https://lucid.app/users/registerOrLogin/free?showLogin=false&invitationId=inv_0df5610d-7135-4ec9-8287-bac78b72bb1d&productOpt=chart&invitationType=documentAcceptance&returnUrlOverride=%2Flucidchart%2F0245ef05-fdf8-4220-a013-0c29b8df646f%2Fedit%3Fviewport_loc%3D-1902%252C-436%252C3758%252C1438%252C0_0%26invitationId%3Dinv_0df5610d-7135-4ec9-8287-bac78b72bb1d)
