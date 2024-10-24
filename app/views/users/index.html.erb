@@ -2,15 +2,15 @@
     <p class="fw-bold h1 text-center"> User Management </p>
 </div>
 <div class="d-flex justify-content-center mt-2">
-    <div class="row">
+    <div class="row" style="width: 60rem;">
         <% if @users.any? %>
             <% @users.each do |tmp_user| %>
-                <div class="col-sm-6">
-                    <div class="card">
+                <div class="col-lg-4 mb-3">
+                    <div class="card" >
                         <% if tmp_user.profile_picture.attached? %>
                             <img src="<%= url_for(tmp_user.profile_picture) %>" class="card-img-top" alt="" title="Profile picture">
                         <% else %>
-                            <i class="fa-solid fa-user-slash" title="No profile picture"></i>
+                            <img src="<%= asset_path("no-image-available.jpg") %>" class="card-img-top" alt="" title="Profile picture">
                         <% end %>
                         <div class="card-body">
                             
@@ -21,7 +21,13 @@
                                 <b>Joined on:</b> <%= tmp_user.date_joined.strftime("%B %d, %Y") if tmp_user.date_joined.present? %>
                             </p>
                             <div class="d-flex">
-                                <%= link_to 'Edit Profile', edit_user_path(tmp_user), class: "btn btn-primary" %>
+                                <%= link_to 'Edit Profile', edit_user_path(tmp_user), class: "btn btn-primary" %> &nbsp;
+                                <%= button_to  'Delete Profile', 
+                                                user_path(tmp_user), 
+                                                method: :delete, 
+                                                class: "btn btn-danger", 
+                                                onclick: "return confirm('Are you sure?');" %>
+
                             </div>
                         </div>
                     </div>
