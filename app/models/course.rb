@@ -5,7 +5,7 @@ class Course < ApplicationRecord
   has_one_attached :completion_certificate
   has_one_attached :achievement_certificate
 
-  enum :level, { beginner: 0, intermediate: 1, advanced: 2 }
+  enum level: %i[beginner intermediate advanced].freeze
 
   validates :title, presence: true
   validates :description, presence: true
