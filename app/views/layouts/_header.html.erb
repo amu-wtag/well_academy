@@ -31,6 +31,11 @@
                 <% if @user.admin? %>
                     <ul>
                         <div class="d-grid gap-2 col-12 mx-auto">
+                            <%= link_to "Create a new category", new_category_path, class: "btn btn-outline-dark" %>
+                        </div>
+                    </ul>
+                    <ul>
+                        <div class="d-grid gap-2 col-12 mx-auto">
                             <%= link_to "Manage Users", users_path, class: "btn btn-outline-dark" %>
                         </div>
                     </ul>
@@ -39,6 +44,7 @@
                             <%= link_to "Pending Teachers", pending_users_path, class: "btn btn-outline-dark" %>
                         </div>
                     </ul>
+                    
                 <% end %>
                 
                 <ul class="d-flex me-5" role="search">
