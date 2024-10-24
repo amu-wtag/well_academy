@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :set_user, only: %i[index new show edit create update destroy]
   def index
     @categories = Category.all
   end
@@ -37,6 +38,10 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
     redirect_to categories_path, notice: "Category was successfully destroyed."
+  end
+
+  def set_user
+    @user = current_user
   end
 
   private
