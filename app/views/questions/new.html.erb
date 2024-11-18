@@ -1,2 +1,18 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container h-100">
+
+    <h1 class="row d-flex justify-content-center">Create Question</h1>
+
+    <%= form_with model: @question, url: course_quiz_questions_path, local: true do |form| %>
+      <div class="row d-flex justify-content-center">
+        <%= render "form", form: form %>
+        <%= form.submit "Create Question", class: "btn btn-success" %>
+      </div>
+
+    <% end %>
+  </div>
+</section>
+
+<%= javascript_include_tag "question_form" %>
+
+
