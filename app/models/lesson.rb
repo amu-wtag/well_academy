@@ -5,7 +5,7 @@ class Lesson < ApplicationRecord
   has_one_attached :content
 
   validates :title, :order, presence: true
-  validates :video, content_type: { in: ['video/mp4', 'video/webm', 'video/ogg'], message: 'must be a video file (MP4, WebM, or Ogg)' }
+  validate :correct_video_format
 
   before_save :adjust_order_within_course, if: :will_save_change_to_order?
 
@@ -27,6 +27,12 @@ class Lesson < ApplicationRecord
     reordered_lessons = lessons.to_a.insert(order - 1, self).compact
     reordered_lessons.each_with_index do |lesson, index|
       lesson.update_column(:order, index + 1) unless lesson.order == index + 1
+    end
+  end
+
+  def correct_video_format
+    if video.attached? && !video.content_type.in?(%w[video/mp4 video/webm video/ogg])
+      errors.add(:video, 'must be a video file (MP4, WebM, or Ogg)')
     end
   end
 
